@@ -8,92 +8,143 @@
         margin: 0;
         padding: 0;
         height: 100vh;
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
         font-family: "Segoe UI", sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        position: relative;
       }
 
+      /* CARD */
       .card {
-        background: white;
-        padding: 40px;
-        border-radius: 20px;
+        background: #fffaf7;
+        padding: 50px;
+        border-radius: 30px;
         text-align: center;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        width: 320px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.28);
+        width: 600px;
+        height: 280px;
+        position: relative;
       }
 
       h1 {
-        color: #ff4d6d;
-        margin-bottom: 30px;
+        color: #ff7a59;
+        margin-bottom: 35px;
+        font-size: 26px;
+      }
+
+      /* BUTTONS */
+      .btn-wrapper {
+        position: relative;
+        width: 100%;
+        height: 120px;
       }
 
       button {
-        padding: 12px 25px;
+        padding: 12px 28px;
         font-size: 16px;
         border: none;
         border-radius: 30px;
         cursor: pointer;
-        transition: 0.3s;
+        transition: transform 0.2s ease;
       }
 
       #yesBtn {
-        background: #ff4d6d;
+        background: #ff7a59;
         color: white;
-        margin-right: 10px;
+        position: absolute;
+        left: 28%;
+        top: 40px;
       }
 
       #noBtn {
-        background: #ccc;
+        background: #f0cfc4;
         color: black;
         position: absolute;
+        left: 62%;
+        top: 40px;
       }
 
-      /* Love Page */
+      .challenge {
+        margin-top: 20px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #ff7a59;
+      }
+
+      .challenge span {
+        color: #ff4d4d;
+        font-weight: 700;
+      }
+
+      /* LOVE PAGE */
       .love-page {
         display: none;
         text-align: center;
         color: white;
         animation: fadeIn 1.5s ease-in-out;
         max-width: 600px;
+        position: relative;
       }
 
       .love-page h1 {
-        font-size: 48px;
+        font-size: 32px;
         margin-bottom: 20px;
       }
 
-      .heart {
-        font-size: 80px;
-        animation: heartbeat 1s infinite;
+      .funny-gif {
+        width: 300px;
+        max-width: 80%;
         margin-bottom: 20px;
-      }
-
-      .love-page img {
-        width: 80%;
-        max-width: 350px;
-        border-radius: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        animation: bounce 1s infinite alternate;
       }
 
       .letter {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.25);
         padding: 20px;
         border-radius: 15px;
         font-size: 18px;
         line-height: 1.5;
+        text-align: left;
+        min-height: 150px;
+        white-space: pre-line;
+        font-family: "Segoe UI", sans-serif;
       }
 
-      @keyframes heartbeat {
-        0%,
-        100% {
-          transform: scale(1);
+      /* FLOATING HEARTS */
+      .heart-float {
+        position: absolute;
+        font-size: 20px;
+        animation: floatUp 4s linear infinite;
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 0.8;
         }
         50% {
-          transform: scale(1.2);
+          transform: translateY(-50px) scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-200px) scale(0.8);
+          opacity: 0;
+        }
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-15px);
         }
       }
 
@@ -105,28 +156,52 @@
           opacity: 1;
         }
       }
+
+      @keyframes wiggle {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(-15deg);
+        }
+        50% {
+          transform: rotate(10deg);
+        }
+        75% {
+          transform: rotate(-10deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
     </style>
   </head>
+
   <body>
-    <!-- First Page -->
+    <!-- FIRST PAGE -->
     <div class="card" id="questionCard">
-      <h1>Will you be my Valentine? ❤️</h1>
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 😢</button>
+      <h1>Shreya, will you be my Valentine? ❤️</h1>
+
+      <div class="btn-wrapper" id="btnArea">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 😢</button>
+      </div>
+
+      <div class="challenge">
+        Think you’re fast enough to catch <span>NO</span>? <br />Prove it 😈🔥
+      </div>
     </div>
 
-    <!-- Second Page -->
+    <!-- SECOND PAGE -->
     <div class="love-page" id="lovePage">
-      <div class="heart">❤️</div>
-      <h1>Yayyy!! 😍</h1>
-      <img src="her.jpg" alt="My Love" />
-      <div class="letter">
-        Sophia,<br /><br />
-        From the moment you came into my life, everything changed. You are my
-        smile, my calm, my chaos, my favorite thought.<br /><br />
-        I don’t need perfect days — I just need you in them.<br /><br />
-        Happy Valentine’s Day ❤️
-      </div>
+      <h1>That’s the best decision you’ve ever made! 😎💖</h1>
+      <img
+        class="funny-gif"
+        src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"
+        alt="Funny GIF"
+      />
+
+      <div class="letter" id="letter"></div>
     </div>
 
     <script>
@@ -134,19 +209,96 @@
       const yesBtn = document.getElementById("yesBtn");
       const card = document.getElementById("questionCard");
       const lovePage = document.getElementById("lovePage");
+      const btnArea = document.getElementById("btnArea");
+      const letterDiv = document.getElementById("letter");
 
-      // Move NO button on hover
-      noBtn.addEventListener("mouseover", () => {
-        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
+      const dangerRadius = 100;
+
+      // Function to create hearts from NO button
+      function spawnHearts(x, y) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart-float");
+        heart.innerText = "💘";
+        heart.style.left = x + "px";
+        heart.style.top = y + "px";
+        heart.style.fontSize = 10 + Math.random() * 15 + "px";
+        heart.style.animationDuration = 2 + Math.random() * 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+      }
+
+      // NO button moves only inside card + wiggle
+      document.addEventListener("mousemove", (e) => {
+        const btnRect = noBtn.getBoundingClientRect();
+        const areaRect = btnArea.getBoundingClientRect();
+
+        const btnCenterX = btnRect.left + btnRect.width / 2;
+        const btnCenterY = btnRect.top + btnRect.height / 2;
+
+        const distance = Math.hypot(
+          e.clientX - btnCenterX,
+          e.clientY - btnCenterY,
+        );
+
+        if (distance < dangerRadius) {
+          const maxX = areaRect.width - btnRect.width;
+          const maxY = areaRect.height - btnRect.height;
+
+          const x = Math.random() * maxX;
+          const y = Math.random() * maxY;
+
+          noBtn.style.left = x + "px";
+          noBtn.style.top = y + "px";
+
+          // Wiggle animation
+          noBtn.style.animation = "wiggle 0.3s";
+          setTimeout(() => (noBtn.style.animation = ""), 300);
+
+          // Spawn hearts
+          spawnHearts(btnCenterX, btnCenterY);
+        }
       });
 
-      // YES button click → show photo + letter
+      // YES click → show next page + typing effect + floating hearts
       yesBtn.addEventListener("click", () => {
         card.style.display = "none";
         lovePage.style.display = "block";
+
+        const message = `Shreya,
+
+From the moment you came into my life, everything changed.
+You are my smile, my calm, my chaos, my favorite thought.
+
+I don’t need perfect days — I just need you in them.
+
+Happy Valentine’s Day ❤️`;
+
+        let i = 0;
+        const speed = 40;
+
+        function typeLetter() {
+          if (i < message.length) {
+            letterDiv.innerHTML += message.charAt(i);
+            i++;
+            setTimeout(typeLetter, speed);
+          }
+        }
+
+        typeLetter();
+
+        // Floating hearts randomly
+        function createHeart() {
+          const heart = document.createElement("div");
+          heart.classList.add("heart-float");
+          heart.innerText = "❤️";
+          heart.style.left = Math.random() * window.innerWidth + "px";
+          heart.style.fontSize = 15 + Math.random() * 20 + "px";
+          heart.style.animationDuration = 3 + Math.random() * 2 + "s";
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 4000);
+        }
+
+        setInterval(createHeart, 400);
       });
     </script>
   </body>
