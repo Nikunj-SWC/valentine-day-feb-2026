@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Be My Valentine ❤️</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      /* BIGGER CARD */
+      .card {
+        background: #fffaf7;
+        padding: 50px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        width: 420px;
+        height: 320px;
+        position: relative;
+      }
+
+      h1 {
+        color: #ff7a59;
+        margin-bottom: 35px;
+        font-size: 26px;
+      }
+
+      /* BUTTON AREA */
+      .btn-wrapper {
+        position: relative;
+        width: 100%;
+        height: 120px;
+      }
+
+      button {
+        padding: 12px 28px;
+        font-size: 16px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+      }
+
+      #yesBtn {
+        background: #ff7a59;
+        color: white;
+        position: absolute;
+        left: 30%;
+        top: 40px;
+      }
+
+      #noBtn {
+        background: #f0cfc4;
+        color: black;
+        position: absolute;
+        left: 62%;
+        top: 40px;
+      }
+
+      /* CHALLENGE TEXT */
+      .challenge {
+        margin-top: 20px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #ff7a59;
+      }
+
+      .challenge span {
+        color: #ff4d4d;
+        font-weight: 700;
+      }
+
+      /* LOVE PAGE */
+      .love-page {
+        display: none;
+        text-align: center;
+        color: white;
+        animation: fadeIn 1.5s ease-in-out;
+        max-width: 600px;
+      }
+
+      .heart {
+        font-size: 80px;
+        animation: heartbeat 1s infinite;
+        margin-bottom: 20px;
+      }
+
+      .letter {
+        background: rgba(255, 255, 255, 0.25);
+        padding: 20px;
+        border-radius: 15px;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- FIRST PAGE -->
+    <div class="card" id="questionCard">
+      <h1>Shreya, will you be my Valentine? ❤️</h1>
+
+      <div class="btn-wrapper" id="btnArea">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 😢</button>
+      </div>
+
+      <div class="challenge">
+        Think you’re fast enough to catch <span>NO</span>? <br />Prove it 😈🔥
+      </div>
+    </div>
+
+    <!-- SECOND PAGE -->
+    <div class="love-page" id="lovePage">
+      <div class="heart">❤️</div>
+      <h1>Yayyy!! 😍</h1>
+      <img src="her.jpg" width="320" />
+      <div class="letter">
+        Shreya,<br /><br />
+        From the moment you came into my life, everything changed. You are my
+        smile, my calm, my chaos, my favorite thought.<br /><br />
+        I don’t need perfect days — I just need you in them.<br /><br />
+        Happy Valentine’s Day ❤️
+      </div>
+    </div>
+
+    <script>
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
+      const card = document.getElementById("questionCard");
+      const lovePage = document.getElementById("lovePage");
+      const btnArea = document.getElementById("btnArea");
+
+      const dangerRadius = 100;
+
+      document.addEventListener("mousemove", (e) => {
+        const btnRect = noBtn.getBoundingClientRect();
+        const areaRect = btnArea.getBoundingClientRect();
+
+        const btnCenterX = btnRect.left + btnRect.width / 2;
+        const btnCenterY = btnRect.top + btnRect.height / 2;
+
+        const distance = Math.hypot(
+          e.clientX - btnCenterX,
+          e.clientY - btnCenterY,
+        );
+
+        if (distance < dangerRadius) {
+          const maxX = areaRect.width - btnRect.width;
+          const maxY = areaRect.height - btnRect.height;
+
+          const x = Math.random() * maxX;
+          const y = Math.random() * maxY;
+
+          noBtn.style.left = x + "px";
+          noBtn.style.top = y + "px";
+        }
+      });
+
+      yesBtn.addEventListener("click", () => {
+        card.style.display = "none";
+        lovePage.style.display = "block";
+      });
+    </script>
+  </body>
+</html>

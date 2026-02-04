@@ -1,0 +1,172 @@
+<!-- CHANGE 2 -->
+<!-- COLOR THEME 1  -->
+<!-- Soft Pastel Love (cute & dreamy) -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Be My Valentine ❤️</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .card {
+        background: #fff;
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        width: 320px;
+      }
+
+      h1 {
+        color: #ff6fa5;
+        margin-bottom: 30px;
+      }
+
+      button {
+        padding: 12px 25px;
+        font-size: 16px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      #yesBtn {
+        background: #ff6fa5;
+        color: white;
+        margin-right: 10px;
+      }
+
+      #noBtn {
+        background: #e0e0e0;
+        color: black;
+        position: absolute;
+      }
+
+      /* Love Page */
+      .love-page {
+        display: none;
+        text-align: center;
+        color: white;
+        animation: fadeIn 1.5s ease-in-out;
+        max-width: 600px;
+      }
+
+      .love-page h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+
+      .heart {
+        font-size: 80px;
+        animation: heartbeat 1s infinite;
+        margin-bottom: 20px;
+      }
+
+      .love-page img {
+        width: 80%;
+        max-width: 350px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .letter {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        border-radius: 15px;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- First Page -->
+    <div class="card" id="questionCard">
+      <h1>Will you be my Valentine? ❤️</h1>
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 😢</button>
+    </div>
+
+    <!-- Second Page -->
+    <div class="love-page" id="lovePage">
+      <div class="heart">❤️</div>
+      <h1>Yayyy!! 😍</h1>
+      <img src="her.jpg" alt="My Love" />
+      <div class="letter">
+        Sophia,<br /><br />
+        From the moment you came into my life, everything changed. You are my
+        smile, my calm, my chaos, my favorite thought.<br /><br />
+        I don’t need perfect days — I just need you in them.<br /><br />
+        Happy Valentine’s Day ❤️
+      </div>
+    </div>
+
+    <script>
+      const noBtn = document.getElementById("noBtn");
+      const yesBtn = document.getElementById("yesBtn");
+      const card = document.getElementById("questionCard");
+      const lovePage = document.getElementById("lovePage");
+
+      const dangerRadius = 120; // px — how close the cursor can get
+
+      document.addEventListener("mousemove", (e) => {
+        const btnRect = noBtn.getBoundingClientRect();
+
+        const btnCenterX = btnRect.left + btnRect.width / 2;
+        const btnCenterY = btnRect.top + btnRect.height / 2;
+
+        const distance = Math.hypot(
+          e.clientX - btnCenterX,
+          e.clientY - btnCenterY,
+        );
+
+        if (distance < dangerRadius) {
+          const x = Math.random() * (window.innerWidth - btnRect.width);
+          const y = Math.random() * (window.innerHeight - btnRect.height);
+
+          noBtn.style.left = x + "px";
+          noBtn.style.top = y + "px";
+        }
+      });
+
+      // YES button click → show photo + letter
+      yesBtn.addEventListener("click", () => {
+        card.style.display = "none";
+        lovePage.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
